@@ -1,0 +1,14 @@
+# Template file for 'fq'
+pkgname=fq
+version=0.3.0
+revision=0
+build_style=go
+go_import_path=github.com/wader/fq
+#go_ldflags="-X github.com/zrepl/zrepl/version.zreplVersion=void-${version}_${revision}"
+#depends="zfs"
+short_desc="fq"
+maintainer="fq"
+license="MIT"
+homepage="https://github.com/wader/fq"
+distfiles="${homepage}/archive/v${version}.tar.gz"
+checksum=1595530a3638add389cad34e333c8ec36228b350bc66a85d2db8e4e086b6df3a
