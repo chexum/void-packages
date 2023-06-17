@@ -6,4 +6,8 @@ exec 2>&1
 export HOME=/var/lib/caddy
 ulimit -n ${MAX_OPEN_FILES:-8192}
 
-exec chpst -u caddy caddy run ${OPTS} --config ${CONFFILE:-/etc/caddy/Caddyfile}
+exec setpriv --reuid caddy --regid caddy --clear-groups \
+  --ambient-caps -all,+net_bind_service \
+  --inh-caps -all,+net_bind_service \
+  --bounding-set -all,+net_bind_service \
+  --no-new-privs -- caddy run ${OPTS} --config ${CONFFILE:-/etc/caddy/Caddyfile}
