@@ -18,8 +18,8 @@ short_desc="${_desc} - GUI toolkit for Python2"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="Python-2.0"
 homepage="https://www.python.org"
-distfiles="https://github.com/ActiveState/cpython/archive/${_commit}.tar.gz"
-checksum=e41b3ebac8ac7b7e3364c7f28892f81153d23dd200ef6aaacec82080aa5d2b56
+distfiles="https://github.com/ActiveState/cpython/archive/v${version}.tar.gz"
+checksum=151a89285245a6457d8a15edd2398b9f55c4586faec6c5fb54c644c84e040c08
 
 if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
 	makedepends+=" libxcrypt-devel"
