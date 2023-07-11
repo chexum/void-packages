@@ -1,16 +1,17 @@
 # Template file for 'binutils'
 pkgname=binutils
-version=2.39
-revision=3
+version=2.41
+revision=0
 bootstrap=yes
-hostmakedepends="pkgconf"
+hostmakedepends="pkgconf help2man"
 makedepends="zlib-devel"
 short_desc="GNU binary utilities"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="http://www.gnu.org/software/binutils/"
 distfiles="${GNU_SITE}/binutils/binutils-${version}.tar.xz"
-checksum=645c25f563b8adc0a81dbd6a41cffbf4d37083a382e02d5d3df4f65c09516d00
+checksum=ae9a5789e23459e59606e6714723f2d3ffc31c03174191ef0d015bdf06007450
+#allow_unknown_shlibs=yes
 
 build_options="all_targets"
 desc_option_all_targets="Enable all supported targets"
@@ -34,6 +35,11 @@ _get_triplet() {
 	else
 		echo "$XBPS_TRIPLET"
 	fi
+}
+
+pre_configure() {
+	# this would be a patch, but the problematic line is in 2.41+ only
+	sed -i -e 's/^\(AM_CFLAGS.*\)\$(ZSTD_CFLAGS)/\1/g' binutils/Makefile.am binutils/Makefile.in
 }
 
 do_configure() {
@@ -65,9 +71,24 @@ do_configure() {
 	esac
 
 	# target archs supported by Void
-	# borked: riscv64 (gold doesn't support it)
 	void_targets="aarch64,armv5tel,armv6l,armv7l,i686,mips,mipsel,ppc,ppcle,ppc64,ppc64le,x86_64"
+	# borked: riscv64 (gold doesn't support it)
+	case "$XBPS_TARGET_MACHINE" in
+		riscv*|m68*)
+			void_targets+=",$XBPS_TARGET_MACHINE"
+			conf+=" --disable-gold"
+			;;
+		*)
+			conf+=" --enable-gold"
+			;;
+	esac
+
 	conf+=" --enable-targets=$(echo "$void_targets" | sed -E -e 's/(,|$)/-linux-gnu\1/g'),${extra_targets}"
+
+	# riscv needs ABI settings
+	if [ "$XBPS_TARGET_MACHINE" = "riscv64" ]; then
+		conf+=" --with-arch=rv64gc --with-abi=lp64d --enable-autolink-automatic"
+	fi
 
 	if [ "$build_option_all_targets" ]; then
 		conf+=" --enable-targets=all"
@@ -90,6 +111,7 @@ do_configure() {
 	mkdir build && cd build
 	../configure --build=$(_get_triplet) \
 		--prefix=/usr \
+		--sysconfdir=/etc \
 		--libdir=/usr/lib \
 		--mandir=/usr/share/man \
 		--infodir=/usr/share/info \
@@ -99,7 +121,6 @@ do_configure() {
 		--enable-threads \
 		--enable-plugins \
 		--enable-relro \
-		--enable-gold \
 		--enable-new-dtags \
 		--enable-deterministic-archives \
 		--enable-64-bit-bfd \
