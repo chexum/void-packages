@@ -30,6 +30,14 @@ case "$XBPS_TARGET_MACHINE" in
 	*) ;;
 esac
 
+case "$XBPS_TARGET_MACHINE" in
+	i686*)
+		# same as openblas
+		makedepends+=" libquadmath "
+		;;
+	*) ;;
+esac
+
 if [ "$build_option_openblas" ]; then
 	case "$XBPS_TARGET_MACHINE" in
 		ppc64*) ;;

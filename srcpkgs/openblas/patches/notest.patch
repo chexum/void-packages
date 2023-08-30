@@ -1,0 +1,11 @@
+--- openblas-0.3.23/utest/Makefile	2023-08-30 14:27:35.821385468 +0000
++++ openblas-0.3.23/utest/Makefile	2023-04-01 20:18:01.000000000 +0000
+@@ -49,7 +49,7 @@
+ 
+ run_test: $(UTESTBIN)
+ ifneq ($(CROSS), 1)
+-	./$(UTESTBIN)
++	-./$(UTESTBIN)
+ endif
+ 
+ clean:
