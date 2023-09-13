@@ -1,0 +1,22 @@
+# Template file for 'biodiff'
+pkgname=biodiff
+version=1.1.0
+revision=0
+build_style=cargo
+#hostmakedepends="cargo gettext pkg-config glib-devel"
+hostmakedepends="cargo"
+#makedepends="libhandy-devel rust-std vte3-devel oniguruma-devel"
+makedepends="rust-std"
+#depends="xi-editor"
+#checkdepends="appstream-glib desktop-file-utils"
+short_desc="biodiff"
+maintainer="J Farkas <chexum+git@gmail.com>"
+license="MIT"
+homepage="https://github.com/8051Enthusiast/biodiff"
+distfiles="https://github.com/8051Enthusiast/biodiff/archive/refs/tags/v${version}.tar.gz"
+checksum=f7960914ccf9b5fbdf3188b187d0cd3bca00f211487aa01d7b6f580da1c32312
+
+post_install() {
+	vlicense LICENSE
+}
+
