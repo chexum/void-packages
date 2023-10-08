@@ -18,6 +18,10 @@ if [ "$CROSS_BUILD" ]; then
 	configure_args+=" -DTEST_FORTRAN_COMPILER=OFF"
 fi
 
+case "${XBPS_TARGET_MACHINE}" in
+	i686*) makedepends+=" libquadmath" ;;
+esac
+
 pre_configure() {
 	cmake_builddir=build-shared
 	_args="$configure_args"

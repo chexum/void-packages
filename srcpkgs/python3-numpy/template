@@ -25,6 +25,10 @@ alternatives="numpy:f2py:/usr/bin/f2py3"
 build_options="openblas"
 
 case "$XBPS_TARGET_MACHINE" in
+	i686*)
+		build_options="cblas"
+		makedepends+=" cblas-devel cmake "
+		;;
 	x86_64*|i686*|aarch64*|armv[67]*|ppc64*)
 		# Prefer accelerated routines where available
 		build_options_default="openblas"
