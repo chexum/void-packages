@@ -1,0 +1,41 @@
+diff --git a/act_linkfiles.c b/act_linkfiles.c
+index 020ced8..7f56426 100644
+--- a/act_linkfiles.c
++++ b/act_linkfiles.c
+@@ -168,7 +168,9 @@ void linkfiles(file_t *files, const int linktype, const int only_current)
+         /* macOS unexpectedly copies the compressed flag when copying metadata
+          * (which can result in files being unreadable), so we want to retain
+          * the compression flag of srcfile */
++#ifdef UF_COMPRESSED
+         srcfile_preserved_flags = s.st_flags & UF_COMPRESSED;
++#endif
+ #else
+         linkfiles_nosupport("clone", "clonefile");
+ #endif
+@@ -268,8 +270,10 @@ void linkfiles(file_t *files, const int linktype, const int only_current)
+           /* macOS unexpectedly copies the compressed flag when copying metadata
+            * (which can result in files being unreadable), so we want to ignore
+            * the compression flag on dstfile in favor of the one from srcfile */
++#ifdef UF_COMPRESSED
+           dupfile_preserved_flags = s.st_flags & ~(unsigned int)UF_COMPRESSED;
+           dupfile_original_flags = s.st_flags;
++#endif
+           dupfile_original_tval[0].tv_sec = s.st_atime;
+           dupfile_original_tval[1].tv_sec = s.st_mtime;
+           dupfile_original_tval[0].tv_usec = 0;
+@@ -302,6 +306,7 @@ void linkfiles(file_t *files, const int linktype, const int only_current)
+ #ifdef ENABLE_CLONEFILE_LINK
+         } else if (linktype == 2) {
+           if (clonefile(srcfile->d_name, dupelist[x]->d_name, 0) == 0) {
++#ifdef COPYFILE_METADATA
+             if (copyfile(tempname, dupelist[x]->d_name, NULL, COPYFILE_METADATA) == 0) {
+               /* If the preserved flags match what we just copied from the original dupfile, we're done.
+                * Otherwise, we need to update the flags to avoid data loss due to differing compression flags */
+@@ -314,6 +319,7 @@ void linkfiles(file_t *files, const int linktype, const int only_current)
+                 } else clonefile_error("utimes", dupelist[x]->d_name);
+               } else clonefile_error("chflags", dupelist[x]->d_name);
+             } else clonefile_error("copyfile", dupelist[x]->d_name);
++#endif
+           } else clonefile_error("clonefile", dupelist[x]->d_name);
+ #endif /* ENABLE_CLONEFILE_LINK */
+         }
