@@ -15,7 +15,7 @@ checksum=4afde1062caa21a62d70b26f44c43e15623a4901f2f354d3ebcd7112da20e142
 
 lib32disabled=yes
 
-hostmakedepends="autoconf unzip zip pkg-config perl python3 yasm rust cargo
+hostmakedepends="autoconf unzip zip pkg-config perl python3.11 yasm rust cargo
  llvm clang nodejs cbindgen nasm which tar"
 makedepends="nss-devel libjpeg-turbo-devel gtk+3-devel icu-devel
  pixman-devel libevent-devel libnotify-devel libvpx-devel
@@ -62,6 +62,7 @@ post_extract() {
 	# Mozilla API keys (see https://location.services.mozilla.com/api)
 	# Note: This is for Void Linux use ONLY.
 	echo -n "cd894504-7a2a-4263-abff-ff73ee89ffca" > mozilla-api-key
+	ln -s /usr/bin/python3.11 /usr/bin/python3
 }
 
 post_patch() {
