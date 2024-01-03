@@ -54,6 +54,7 @@ do_build() {
 			;;
 		arm*) _ARCH="arm";;
 		mips*) _ARCH="mips";;
+		riscv64*) _ARCH="riscv64";;
 		*) msg_error "$pkgver: unknown target machine\n";;
 	esac
 	export XCFLAGS="${CFLAGS}"
