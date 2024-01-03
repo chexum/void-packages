@@ -21,9 +21,7 @@ homepage="https://www.python.org"
 distfiles="https://github.com/ActiveState/cpython/archive/v${version}.tar.gz"
 checksum=151a89285245a6457d8a15edd2398b9f55c4586faec6c5fb54c644c84e040c08
 
-if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
-	makedepends+=" libxcrypt-devel"
-fi
+configure_args+=" py_cv_module__crypt=n/a"
 
 pre_configure() {
 	# Ensure that internal copies of expat, libffi and zlib are not used.
