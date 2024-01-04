@@ -28,6 +28,7 @@ ld-linux.so.3 glibc-2.38_1 armv5tel
 ld-linux-aarch64.so.1 glibc-2.38_1 aarch64
 ld-linux-riscv64-lp64d.so.1 glibc-2.38_1 riscv64
 ld64.so.2 glibc-2.38_1 ppc64
+ld.so.1 glibc-2.38_1 m68k
 ld.so.1 glibc-2.38_1 mips
 ld.so.1 glibc-2.38_1 ppc
 ld-linux-armhf.so.3 glibc-2.38_1
@@ -61,7 +62,11 @@ libcc1.so.0 gcc-6.2.1_1
 libcc1plugin.so.0 gcc-6.2.1_1
 libitm.so.1 libitm-4.7.3_1
 liblto_plugin.so.0 gcc-4.7.3_1
-libgcc_s.so.1 libgcc-4.4.0_1
+libgcc_s.so.1 libgcc-4.4.0_1 aarch64
+libgcc_s.so.1 libgcc-4.4.0_1 x86_64
+libgcc_s.so.1 libgcc-4.4.0_1 riscv64
+libgcc_s.so.1 libgcc-4.4.0_1 i686
+libgcc_s.so.2 libgcc-12.2.0_4 m68k
 libgo.so.21 libgo-12.2.0_1
 libgccjit.so.0 libgccjit-10.2.1pre1_1
 libperl.so.5.38 perl-5.38.0_1

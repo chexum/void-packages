@@ -330,6 +330,7 @@ get_endian() {
         armv6l)   echo "le";;
         armv7l)   echo "le";;
         i686)     echo "le";;
+        m68*)     echo "be";;
         mipsel*)  echo "le";;
         mips*)    echo "be";;
         ppc*le)   echo "le";;
@@ -358,6 +359,7 @@ get_wordsize() {
         armv6l)   echo "32";;
         armv7l)   echo "32";;
         i686)     echo "32";;
+        m68*)     echo "32";;
         mipsel*)  echo "32";;
         mips*)    echo "32";;
         ppc64*)   echo "64";;
@@ -373,6 +375,7 @@ get_no_atomic8() {
     case "$arch" in
         armv5tel) echo "yes";;
         armv6l)   echo "yes";;
+        m68*)     echo "yes";;
         mips*)    echo "yes";;
         ppcle)    echo "yes";;
         ppc)      echo "yes";;
