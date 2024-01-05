@@ -103,6 +103,7 @@ do_configure() {
 		--enable-stack-protector=strong \
 		--disable-profile --enable-kernel=3.2.0 \
 		--without-selinux --without-gd \
+		--disable-multi-arch \
 		--disable-werror \
 		libc_cv_rootsbindir=/usr/bin \
 		libc_cv_rtlddir=${_libdir} libc_cv_slibdir=${_libdir}
