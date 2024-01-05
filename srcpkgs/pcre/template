@@ -37,6 +37,9 @@ if [ "$CROSS_BUILD" ]; then
 		esac
 		autoreconf -fi
 	}
+	if [ "$XBPS_TARGET_MACHINE" == "riscv64" ]; then
+		configure_args+=" --disable-jit"
+	fi
 fi
 
 libpcrecpp_package() {
