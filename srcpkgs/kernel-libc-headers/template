@@ -21,6 +21,7 @@ case "$XBPS_TARGET_MACHINE" in
 	m68*) _arch="m68k";;
 	mips*) _arch="mips";;
 	ppc*) _arch="powerpc";;
+	riscv*) _arch="riscv64";;
 	*) msg_error "$pkgname: unknown architecture.\n";;
 esac
 
