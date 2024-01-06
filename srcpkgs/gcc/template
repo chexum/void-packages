@@ -35,7 +35,8 @@ bootstrap=yes
 replaces="gcc-gcj<7.2.0 gcc-gcj-jdk-compat<7.2.0 libmpx>=0 libmpx-devel>=0
  libssp>=0 libssp-devel>=0"
 
-_have_gccgo=yes
+#have_gccgo=yes
+_have_gccgo=no
 
 # MIPS is untested and does not have go in crosstoolchains
 # 32-bit PowerPC seems weirdly broken since the 10.x release

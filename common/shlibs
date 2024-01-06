@@ -67,6 +67,9 @@ libgcc_s.so.1 libgcc-4.4.0_1 x86_64
 libgcc_s.so.1 libgcc-4.4.0_1 riscv64
 libgcc_s.so.1 libgcc-4.4.0_1 i686
 libgcc_s.so.2 libgcc-12.2.0_4 m68k
+libgcc_s.so.1 libgcc-4.4.0_1
+#ibgcc_s.so.1 libgcc-4.4.0_1
+libgcc_s.so.2 libgcc-12.2.0_1 m68k
 libgo.so.21 libgo-12.2.0_1
 libgccjit.so.0 libgccjit-10.2.1pre1_1
 libperl.so.5.38 perl-5.38.0_1

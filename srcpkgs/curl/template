@@ -15,7 +15,7 @@ make_check_args="TFLAGS=!1477"
 # Use mdocml instead of groff to generate builtin manual to avoid cyclic
 # dependencies.
 hostmakedepends="perl pkg-config mdocml"
-makedepends="nghttp2-devel zlib-devel $(vopt_if gnutls 'gnutls-devel')
+makedepends="zlib-devel $(vopt_if gnutls 'gnutls-devel')
  $(vopt_if gssapi 'mit-krb5-devel') $(vopt_if ldap 'libldap-devel')
  $(vopt_if rtmp 'librtmp-devel') $(vopt_if ssh 'libssh2-devel')
  $(vopt_if psl 'libpsl-devel') $(vopt_if idn 'libidn2-devel')

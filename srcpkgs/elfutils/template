@@ -20,6 +20,8 @@ checksum=8e00a3a9b5f04bc1dc273ae86281d2d26ed412020b391ffcc23198f10231d692
 subpackages="debuginfod libdebuginfod libelf elfutils-devel"
 CFLAGS="-Wno-error=deprecated-declarations" # curl 7.55+
 
+configure_args+=" --enable-libdebuginfod=dummy"
+
 if [ "$XBPS_TARGET_LIBC" = musl ]; then
 	makedepends+=" argp-standalone musl-fts-devel musl-obstack-devel"
 
